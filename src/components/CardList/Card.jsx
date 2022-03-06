@@ -16,12 +16,22 @@ const Card = (props) => {
   
   const cardColor = props.isFlipped ? stylesBlack : stylesWhite;
 
+  // console.log(props.mouseMode)
 
   return (
-    <div onClick={() => props.handleClick(props.id)} className="Card" style={cardColor}>
-      {props.id}
-      <p>{props.isFlipped}</p>
-    </div>
+    <>
+    {props.mouseMode ? 
+      <div onClick={() => props.handleClick(props.id)} className="Card" style={cardColor}>
+        {props.id}
+        <p>{props.isFlipped}</p>
+      </div>
+      : 
+      <div onMouseOver={() => props.handleClick(props.id)} className="Card" style={cardColor}>
+        {props.id}
+        <p>{props.isFlipped}</p>
+      </div>
+    }
+    </>
   )
 }
 

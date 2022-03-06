@@ -1,10 +1,22 @@
 import React from 'react'
-import cardsData from '../../cardsData';
+// import cardsData from '../../cardsData';
 import Card from './Card';
 
-const CardList = () => {
+const CardList = (props) => {
 
-    const [cards, setCard] = React.useState(cardsData);
+    // console.log(props)
+
+    // create data on the fly!
+    let i = 0;
+
+    const arrayOfCards = Array.from(Array(Number(props.numOfCards)), () => ({
+        "id": `${i++}`,
+        "isFlipped": false
+    }))
+    // console.log(arrayOfCards)
+
+    const [cards, setCard] = React.useState(arrayOfCards);
+    const [mouseMode, setMouseMode] = React.useState(true)
 
     // imperitive method!
     // const handleIsFlipped = (cardId) => {
@@ -35,23 +47,33 @@ const CardList = () => {
     // 4. if any cards match the id of the clicked card, change the state of isFlipped5
     // 5. else return the card
 
-    const handleIsFlipped = (cardId) => {
-        console.log(cardId)
+    const handleIsFlipped = (id) => {
+        // console.log(id)
         setCard(prevCards => {
-            return (prevCards.map((card) => {
-                return card.id === cardId ? {...card, isFlipped: !card.isFlipped} : card
-            }))
-        });
+            return prevCards.map(card => {
+                return card.id === id ? { ...card, isFlipped: !card.isFlipped } : card
+            })
+        })
+    }
+
+    const handleToggle = () => {
+        setMouseMode(prevMouseMode => !prevMouseMode)
     }
 
     const myCards = cards.map(card => (
-            <Card key={card.id} {...card} handleClick={handleIsFlipped}/>
+            <Card key={card.id} {...card} mouseMode={mouseMode} handleClick={handleIsFlipped}/>
     ))
 
   return (
-    <div>
-        {myCards}
-    </div>
+    <>
+        <div className="cardlist-top-menu">
+            <button onClick={props.handleClick}>Home</button>
+            <button onClick={handleToggle}>{mouseMode ? "Click" : "Hover"}</button>
+        </div>
+        <div>
+            {myCards}
+        </div>
+    </>
   )
 }
 
