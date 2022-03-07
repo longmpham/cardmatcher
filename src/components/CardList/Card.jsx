@@ -6,12 +6,14 @@ const Card = (props) => {
 
   const stylesBlack = {
     backgroundColor:"black",
-    color: "white"
+    color: "white",
+    opacity: 1
   }
 
   const stylesWhite = {
     backgroundColor:"white",
-    color: "black"
+    color: "black",
+    opacity: 0
   }
   
   const cardColor = props.isFlipped ? stylesBlack : stylesWhite;

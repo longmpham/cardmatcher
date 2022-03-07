@@ -6,12 +6,23 @@ const CardList = (props) => {
 
     // console.log(props)
 
+    const randomizer = () => {
+        let tempArr = [true, false]
+        if (props.isRandom){
+            let i = Math.floor(Math.random() * 2)
+            // console.log(tempArr[i])
+            return tempArr[i]
+        }
+        else return false
+    }
+
+
     // create data on the fly!
     let i = 0;
 
     const arrayOfCards = Array.from(Array(Number(props.numOfCards)), () => ({
         "id": `${i++}`,
-        "isFlipped": false
+        "isFlipped": randomizer()
     }))
     // console.log(arrayOfCards)
 
@@ -67,8 +78,8 @@ const CardList = (props) => {
   return (
     <>
         <div className="cardlist-top-menu">
-            <button onClick={props.handleClick}>Home</button>
-            <button onClick={handleToggle}>{mouseMode ? "Click" : "Hover"}</button>
+            <button className="cardlist-top-menu-button" onClick={props.handleClick}>Home</button>
+            <button className="cardlist-top-menu-button" onClick={handleToggle}>{mouseMode ? "Click" : "Hover"}</button>
         </div>
         <div className="cardlist-canvas">
             {myCards}

@@ -6,10 +6,11 @@ import StartPage from './components/StartPage/StartPage';
 function App() {
 
   const [isStart, setIsStart] = React.useState(false);
-  const [numOfCards, setNumOfCards] = React.useState(500)
+  const [numOfCards, setNumOfCards] = React.useState(1000)
+  const [isRandom, setIsRandom] = React.useState(false)
 
   const handleStart = () => {
-    console.log('start')
+    // console.log('start')
     setIsStart(prevIsStart => !prevIsStart)
   }
 
@@ -19,11 +20,16 @@ function App() {
     setNumOfCards(value)
   }
 
+  const handleIsRandom = () => {
+    setIsRandom(true)
+    setIsStart(prevIsStart => !prevIsStart)
+  }
+
 
   return (
-    <div>
-      {!isStart ? <StartPage handleCards={handleNumOfCards} handleClick={handleStart} /> :
-        <CardList numOfCards={numOfCards} handleClick={handleStart}/>
+    <div className="App">
+      {!isStart ? <StartPage handleRandom={handleIsRandom} handleCards={handleNumOfCards} handleClick={handleStart} /> :
+        <CardList isRandom={isRandom} numOfCards={numOfCards} handleClick={handleStart}/>
       }
     </div>
   );
