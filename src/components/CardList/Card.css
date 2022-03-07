@@ -8,15 +8,21 @@
     padding-bottom: 40px;
     margin-bottom: 40px;
 }
-.Card {
+
+.cardlist-canvas {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
     /* margin: 10px;
     padding: 2px; */
-    background-color: rgb(77, 77, 77);
+    /* background-color: rgb(77, 77, 77); */
     /* border-radius: 100px; */
     border: 1px solid black;
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
+    /* display:inline-block; */
+    width: 20px;
+    height: 20px;
     text-align: center;
     align-items: center;
     justify-content: center;

@@ -70,7 +70,7 @@ const CardList = (props) => {
             <button onClick={props.handleClick}>Home</button>
             <button onClick={handleToggle}>{mouseMode ? "Click" : "Hover"}</button>
         </div>
-        <div>
+        <div className="cardlist-canvas">
             {myCards}
         </div>
     </>
